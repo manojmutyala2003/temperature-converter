@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature Converter</title>
+  <style>
+     body{
+            font-family: Arial, Helvetica, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to right, #0a426f, #e592bb);
+     }
+    #converter {
+      width: 300px;
+      margin: 0 auto;
+      padding: 10px;
+      border: 20px solid #ffffff;
+    }
+
+    #converter label {
+      display: rgb(3, 3, 3);
+      margin-top: 10px;
+    }
+
+    #converter input[type="text"] {
+      width: 80%;
+      padding: 5px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #converter select {
+      width: 80%;
+      padding: 5px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+    }
+
+    #converter button {
+      width: 100%;
+      padding: 5px;
+      margin-top: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    #converter button:hover {
+      background-color: #45a049;
+    }
+
+    #converter p {
+      margin-top: 10px;
+      font-size: 20px;
+      color: rgb(0, 0, 0);
+    }
+  </style>
+</head>
+<body>
+  <div id="converter">
+    <h1>Temperature Converter</h1>
+    <label for="temperature">Enter Temperature:</label>
+    <input type="text" id="temperature" name="temperature">
+    <label for="unit">Choose Unit:</label>
+    <select id="unit" name="unit">
+      <option value="Fahrenheit">Fahrenheit</option>
+      <option value="Celsius">Celsius</option>
+    </select>
+    <button id="convert">Convert</button>
+    <p id="result"></p>
+  </div>
+  <script>
+    const convertButton = document.querySelector('#convert');
+    const temperatureInput = document.querySelector('#temperature');
+    const unitSelect = document.querySelector('#unit');
+    const resultParagraph = document.querySelector('#result');
+
+    convertButton.addEventListener('click', () => {
+      const temperature = parseFloat(temperatureInput.value);
+      const unit = unitSelect.value;
+      let convertedTemperature;
+
+      if (unit === 'Fahrenheit') {
+        convertedTemperature = (temperature - 32) * 5 / 9;
+      } else {
+        convertedTemperature = (temperature * 9 / 5) + 32;
+      }
+
+      resultParagraph.textContent = `${temperature}° ${unit} = ${convertedTemperature.toFixed(2)}° Celsius`;
+    });
+  </script>
+</body>
+</html>
